@@ -12,25 +12,35 @@
 #define _BKSPC_ &kp BACKSPACE
 #define __DEL__ &kp DELETE
 
-#define ___A___ HMRS A
+//#define ___A___ HMRS A
+#define ___A___ &kp A
 #define ___B___ &kp B
-#define ___C___ HLSYS C
-#define ___D___ HMLS D
-#define ___E___ HMRG E
+//#define ___C___ HLSYS C
+#define ___C___ &kp C
+//#define ___D___ HMLS D
+#define ___D___ &kp D
+//#define ___E___ HMRG E
+#define ___E___ &kp E
 #define ___F___ &kp F
 #define ___G___ &kp G
 #define ___H___ &kp H
-#define ___I___ HLWIN I
+//#define ___I___ HLWIN I
+#define ___I___ &kp I
 #define ___J___ &kp J
 #define ___K___ &kp K
 #define ___L___ &kp L
-#define ___M___ HMLO M
-#define ___N___ HMLG N
+//#define ___M___ HMLO M
+#define ___M___ &kp M
+//#define ___N___ HMLG N
+#define ___N___ &kp N
 #define ___O___ &kp O
-#define ___P___ HMLC P
+//#define ___P___ HMLC P
+#define ___P___ &kp P
 #define ___R___ &kp R
-#define ___S___ HLNUM S
-#define ___T___ HLNAV T
+//#define ___S___ HLNUM S
+#define ___S___ &kp S
+//#define ___T___ HLNAV T
+#define ___T___ &kp T
 #define ___U___ &kp U
 #define ___V___ &kp V
 #define ___W___ &kp W
@@ -41,14 +51,30 @@
 #define _OSLSH_ &kp RA(O)
 #define _AELIG_ &kp RA(SINGLE_QUOTE)
 
-#define _COMMA_ &morph_comma_underscore
-#define _MINUS_ &morph_minus_plus
-#define _COLON_ &morph_colon_pipe
-#define _GRAVE_ &morph_grave_equal
-#define __DOT__ &morph_hmrc_dot_ampersand
-#define _SLASH_ &morph_hmro_slash_star
-#define _SQUOT_ &morph_squote_exclamation
-#define _DQUOT_ &morph_dquote_question
+// #define _COMMA_ &morph_comma_underscore
+// #define _MINUS_ &morph_minus_plus
+// #define _COLON_ &morph_colon_pipe
+// #define _GRAVE_ &morph_grave_equal
+// #define __DOT__ &morph_hmrc_dot_ampersand
+// #define _SLASH_ &morph_hmro_slash_star
+// #define _SQUOT_ &morph_squote_exclamation
+// #define _DQUOT_ &morph_dquote_question
+#define _COMMA_ &kp COMMA
+#define _UNDRS_ &kp UNDERSCORE
+#define _MINUS_ &kp MINUS
+#define _PLUS__ &kp PLUS
+#define _COLON_ &kp COLON
+#define _PIPE__ &kp PIPE
+#define _GRAVE_ &kp GRAVE
+#define _EQUAL_ &kp EQUAL
+#define __DOT__ &kp DOT
+#define __AMP__ &kp AMPERSAND
+#define _SLASH_ &kp SLASH
+#define _STAR__ &kp STAR
+#define _SQUOT_ &kp SINGLE_QUOTE
+#define _DQUOT_ &kp DOUBLE_QUOTES
+#define _EXCLM_ &kp EXCLAMATION
+#define _QUEST_ &kp QUESTION
 
 #define _LSHFT_ &sk LEFT_SHIFT
 #define _LCTRL_ &sk LEFT_CONTROL
