@@ -25,16 +25,17 @@
 / {
 
   behaviors {
-    rnav: repeat_nav {
-      compatible = "zmk,behavior-hold-tap";
-      label = "REPEAT_NAV";
-      #binding-cells = <2>;
-      flavor = "tap-preferred";
-      tapping-term-ms = <120>;
-      bindings = <&mo>, <&key_repeat>;
-    };
+    #include "behaviours/mo-layer-or-repeat.dtsi"
+//    nav_or_repeat: nav_or_repeat {
+//      compatible = "zmk,behavior-hold-tap";
+//      label = "REPEAT_NAV";
+//      #binding-cells = <2>;
+//      flavor = "hold-preferred";
+//      tapping-term-ms = <120>;
+//      bindings = <&mo>, <&key_repeat>;
+//    };
 
-    #define __RPT__ &rnav NAV 0
+
 
     //#include "hold_tap.dtsi"
     //#include "mod_morph.dtsi"
