@@ -28,13 +28,13 @@
     rnav: repeat_nav {
       compatible = "zmk,behavior-hold-tap";
       label = "REPEAT_NAV";
-      #binding-cells = <1>;
+      #binding-cells = <2>;
       flavor = "tap-preferred";
       tapping-term-ms = <120>;
       bindings = <&mo>, <&key_repeat>;
     };
 
-    #define __RPT__ &rnav NAV 1
+    #define __RPT__ &rnav NAV 0
 
     //#include "hold_tap.dtsi"
     //#include "mod_morph.dtsi"
