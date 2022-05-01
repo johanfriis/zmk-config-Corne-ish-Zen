@@ -1,0 +1,1 @@
+#define STICKY_KEY_TIMEOUT=60000

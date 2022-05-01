@@ -11,37 +11,50 @@
 #define WIN 3
 #define SYS 4
 
-&sk {
-  release-after-ms = <2000>;
-};
 
 &kscan0 {
-  debounce-period = <10>;
+  debounce-period = <14>;
 };
+
+&sk {
+  release-after-ms = <STICKY_KEY_TIMEOUT>;
+};
+
+&caps_word {
+  continue-list = <UNDERSCORE MINUS BACKSPACE>;
+}
 
 / {
 
   behaviors {
-    mo_or_repeat: mo_layer_or_repeat {
+
+    skq: sticky_key_quick_release {
+      compatible = "zmk,behavior-sticky-key";
+      label = "STICKY_KEY_QUICK_RELEASE";
+      #binding-cells = <1>;
+      bindings = <&kp>;
+      quick-release;
+      release-after-ms = <STICKY_KEY_TIMEOUT>;
+    };
+
+    mr: mo_layer_or_repeat {
       compatible = "zmk,behavior-hold-tap";
       label = "MO_REPEAT";
       #binding-cells = <2>;
       flavor = "tap-unless-interrupted";
       tapping-term-ms = <120>;
       bindings = <&mo>, <&key_repeat>;
-    };  
-
-    #define NAV_RPT &mo_or_repeat NAV 0
-
-    shift_dance: shift_dance {
-        compatible = "zmk,behavior-tap-dance";
-        label = "SHIFT_DANCE";
-        #binding-cells = <0>;
-        tapping-term-ms = <200>;
-        bindings = <&sk LEFT_SHIFT>, <&caps_word>;
     };
 
-    #define _LSHFT_ &shift_dance
+//    shift_dance: shift_dance {
+//        compatible = "zmk,behavior-tap-dance";
+//        label = "SHIFT_DANCE";
+//        #binding-cells = <0>;
+//        tapping-term-ms = <200>;
+//        bindings = <&sk LEFT_SHIFT>, <&caps_word>;
+//    };
+//
+//    #define _LSHFT_ &shift_dance
 
 
     //#include "hold_tap.dtsi"
@@ -61,24 +74,42 @@
 //        XXXXXXX  _______  _______  _______  _______  _______    _______  _______  _______  _______  _______  XXXXXXX
 //                                   _______  _______  _______    _______  _______  _______
 
+
     base_layer {
-      label = "DEF";
+      label = "HXY";
       bindings = <
-        XXXXXXX  ___Y___  _COMMA_  ___H___  ___W___  ___F___    ___Q___  ___K___  ___O___  ___U___  ___X___  XXXXXXX
-        XXXXXXX  ___S___  ___I___  ___N___  ___D___  ___C___    ___V___  ___T___  ___A___  ___E___  ___R___  XXXXXXX
-        XXXXXXX  ___J___  __DOT__  ___L___  ___P___  ___B___    ___G___  ___M___  __SEMI_  _SLASH_  ___Z___  XXXXXXX
-                                   _______  _LSHFT_  NAV_RPT    _SPACE_  _LSHFT_  _______
+        // ╭───────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬───────╮
+             &none   &kp Y         &kp COMMA     &kp H         &kp W         &kp F             &kp Q         &kp K         &kp O         &kp U         &kp X         &none
+        // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
+             &none   &kp S         &kp I         &kp N         &kp D         &kp C             &kp V         &kp T         &kp A         &kp E         &kp R         &none
+        // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
+             &none   &kp J         &kp DOT       &kp L         &kp P         &kp B             &kp G         &kp M         &kp SEMI      &kp SLASH     &kp Z         &none
+        // ╰───────┴─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴───────╯
+                                                 &none         &skq LSHIFT   &mr NAV 0         &kp SPACE     &skq LSHIFT   &none
+        //                                     ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
       >;
     };
 
-    nav_layer {
-      label = "NAV";
-      bindings = <
-        XXXXXXX  _______  _LCTRL_  _LOPT__  _LCTRL_  _______    _______  _BKSPC_  __UP___  __DEL__  _______  XXXXXXX
-        XXXXXXX  _______  _______  _LCMD__  _LSHFT_  _______    _______  _LEFT__  _DOWN__  _RIGHT_  _______  XXXXXXX
-        XXXXXXX  _______  _______  _______  _______  _______    _______  __TAB__  o_TABL_  o_TABR_  _______  XXXXXXX
-                                   _______  _______  _______    _SPACE_  _ENTER_  _______
-      >;
-    };
+
+
+//    base_layer {
+//      label = "DEF";
+//      bindings = <
+//        XXXXXXX  ___Y___  _COMMA_  ___H___  ___W___  ___F___    ___Q___  ___K___  ___O___  ___U___  ___X___  XXXXXXX
+//        XXXXXXX  ___S___  ___I___  ___N___  ___D___  ___C___    ___V___  ___T___  ___A___  ___E___  ___R___  XXXXXXX
+//        XXXXXXX  ___J___  __DOT__  ___L___  ___P___  ___B___    ___G___  ___M___  __SEMI_  _SLASH_  ___Z___  XXXXXXX
+//                                   _______  _LSHFT_  NAV_RPT    _SPACE_  _LSHFT_  _______
+//      >;
+//    };
+
+         //    nav_layer {
+         //      label = "NAV";
+         //      bindings = <
+         //        XXXXXXX  _______  _LCTRL_  _LOPT__  _LCTRL_  _______    _______  _BKSPC_  __UP___  __DEL__  _______  XXXXXXX
+         //        XXXXXXX  _______  _______  _LCMD__  _LSHFT_  _______    _______  _LEFT__  _DOWN__  _RIGHT_  _______  XXXXXXX
+         //        XXXXXXX  _______  _______  _______  _______  _______    _______  __TAB__  o_TABL_  o_TABR_  _______  XXXXXXX
+         //                                   _______  _______  _______    _SPACE_  _ENTER_  _______
+         //      >;
+         //    };
   };
 };
