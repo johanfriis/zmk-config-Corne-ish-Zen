@@ -25,15 +25,18 @@
 / {
 
   behaviors {
-    #include "behaviors/mo-layer-or-repeat.dtsi"
-//    nav_or_repeat: nav_or_repeat {
-//      compatible = "zmk,behavior-hold-tap";
-//      label = "REPEAT_NAV";
-//      #binding-cells = <2>;
-//      flavor = "hold-preferred";
-//      tapping-term-ms = <120>;
-//      bindings = <&mo>, <&key_repeat>;
-//    };
+    //#include "behaviors/mo-layer-or-repeat.dtsi"
+
+    mo_or_repeat: mo_layer_or_repeat {
+      compatible = "zmk,behavior-hold-tap";
+      label = "MO_REPEAT";
+      #binding-cells = <2>;
+      flavor = "hold-preferred";
+      tapping-term-ms = <120>;
+      bindings = <&mo>, <&key_repeat>;
+    };
+
+    #define NAV_RPT &mo_or_repeat NAV 0
 
 
 
