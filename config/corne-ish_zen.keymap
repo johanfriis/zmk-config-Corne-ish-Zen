@@ -44,10 +44,8 @@
       compatible = "zmk,behavior-hold-tap";
       label = "MO_REPEAT";
       #binding-cells = <2>;
-      flavor = "tap-preferred";
+      flavor = "hold-preferred";
       tapping-term-ms = <200>;
-      quick-tap-ms = <125>;
-      global-quick-tap;
       bindings = <&sl>, <&key_repeat>;
     };
 
