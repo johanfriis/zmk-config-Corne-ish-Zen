@@ -31,7 +31,7 @@
       #binding-cells = <1>;
       flavor = "tap-preferred";
       tapping-term-ms = <120>;
-      bindings = <&mo> <&key_repeat>;
+      bindings = <&mo>, <&key_repeat>;
     };
 
     #define __RPT__ &rnav NAV 1
