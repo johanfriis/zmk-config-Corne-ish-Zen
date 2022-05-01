@@ -110,7 +110,7 @@
 #define _EXCLM_ &kp EXCLAMATION
 #define _QUEST_ &kp QUESTION
 
-#define _LSHFT_ &sk LEFT_SHIFT
+//#define _LSHFT_ &sk LEFT_SHIFT
 #define _LCTRL_ &sk LEFT_CONTROL
 #define _LOPT__ &sk LEFT_ALT
 #define _LCMD__ &sk LEFT_COMMAND
