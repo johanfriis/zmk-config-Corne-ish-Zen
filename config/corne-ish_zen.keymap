@@ -4,6 +4,19 @@
 
 #include "corne-ish_zen.h"
 
+// Keep sticky keys active for a long time so they effectively do not time out
+#define STICKY_KEY_TIMEOUT 60000
+
+#define XXXXX &none
+#define _____ &trans
+
+#define DEF 0
+#define NAV 1
+#define NUM 2
+
+#define SK(KEY) &nk KEY KEY
+#define MR(LAYER) &mr LAYER 0
+
 &kscan0 {
   debounce-period = <14>;
 };
@@ -75,9 +88,9 @@
     //#include "macros.dtsi"
   };
 
-//  combos {
-//    #include "combos.dtsi"
-//  };
+  combos {
+    #include "combos.dtsi"
+  };
 
   keymap {
     compatible = "zmk,keymap";
@@ -106,7 +119,7 @@
         // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
              XXXXX   &kp J         &kp DOT       &kp L         &kp P         &kp B             &kp G         &kp M         &kp SEMI      &kp SLASH     &kp Z         XXXXX
         // ╰───────┴─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴───────╯
-                                                 _____         &skq LSHIFT   &mr NAV 0         &kp SPACE     &skq LSHIFT   _____
+                                                 _____         &skq LSHIFT   MR(NAV)           &kp SPACE     &skq LSHIFT   _____
         //                                     ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
       >;
     };
