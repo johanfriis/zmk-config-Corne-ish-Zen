@@ -25,7 +25,7 @@
 / {
 
   behaviors {
-    #include "behaviours/mo-layer-or-repeat.dtsi"
+    #include "behaviors/mo-layer-or-repeat.dtsi"
 //    nav_or_repeat: nav_or_repeat {
 //      compatible = "zmk,behavior-hold-tap";
 //      label = "REPEAT_NAV";
