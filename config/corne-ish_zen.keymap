@@ -5,14 +5,11 @@
 
 // LAYERS
 #define DEF 0
-#define CPS 1
-#define NAV 2
+#define NAV 1
 
-#define NUM 3
-#define WIN 4
-#define SYS 5
-
-#define _LSHFT_ &mo 1
+#define NUM 2
+#define WIN 3
+#define SYS 4
 
 &sk {
   release-after-ms = <2000>;
@@ -25,15 +22,27 @@
 / {
 
   behaviors {
-    #include "behaviors/mo-layer-or-repeat.dtsi"
+    mo_or_repeat: mo_layer_or_repeat {
+      compatible = "zmk,behavior-hold-tap";
+      label = "MO_REPEAT";
+      #binding-cells = <2>;
+      flavor = "tap-unless-interrupted";
+      tapping-term-ms = <120>;
+      bindings = <&mo>, <&key_repeat>;
+    };  
+
+    #define NAV_RPT &mo_or_repeat NAV 0
 
     shift_dance: shift_dance {
         compatible = "zmk,behavior-tap-dance";
         label = "SHIFT_DANCE";
         #binding-cells = <0>;
         tapping-term-ms = <200>;
-        bindings = <&kp LEFT_SHIFT>, <&caps_word>;
+        bindings = <&sk LEFT_SHIFT>, <&caps_word>;
     };
+
+    #define _LSHFT_ &shift_dance
+
 
     //#include "hold_tap.dtsi"
     //#include "mod_morph.dtsi"
@@ -55,20 +64,10 @@
     base_layer {
       label = "DEF";
       bindings = <
-        XXXXXXX  ___y___  _COMMA_  ___h___  ___w___  ___f___    ___q___  ___k___  ___o___  ___u___  ___x___  XXXXXXX
-        XXXXXXX  ___s___  ___i___  ___n___  ___d___  ___c___    ___v___  ___t___  ___a___  ___e___  ___r___  XXXXXXX
-        XXXXXXX  ___j___  __DOT__  ___l___  ___p___  ___b___    ___g___  ___m___  __SEMI_  _SLASH_  ___z___  XXXXXXX
-                                   _______  &shift_dance  NAV_RPT    _SPACE_  _LSHFT_  _______
-      >;
-    };
-
-    caps_layer {
-      label = "DEF";
-      bindings = <
         XXXXXXX  ___Y___  _COMMA_  ___H___  ___W___  ___F___    ___Q___  ___K___  ___O___  ___U___  ___X___  XXXXXXX
         XXXXXXX  ___S___  ___I___  ___N___  ___D___  ___C___    ___V___  ___T___  ___A___  ___E___  ___R___  XXXXXXX
         XXXXXXX  ___J___  __DOT__  ___L___  ___P___  ___B___    ___G___  ___M___  __SEMI_  _SLASH_  ___Z___  XXXXXXX
-                                   _______  _CWORD_  NAV_RPT    _SPACE_  _CWORD_  _______
+                                   _______  _LSHFT_  NAV_RPT    _SPACE_  _LSHFT_  _______
       >;
     };
 
