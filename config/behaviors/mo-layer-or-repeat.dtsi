@@ -1,10 +1,10 @@
-#include "keycodes.h"
+//#include "keycodes.h"
 
 mo_or_repeat: mo_layer_or_repeat {
   compatible = "zmk,behavior-hold-tap";
   label = "MO_REPEAT";
   #binding-cells = <2>;
-  flavor = "hold-preferred";
+  flavor = "tap-unless-interrupted";
   tapping-term-ms = <120>;
   bindings = <&mo>, <&key_repeat>;
 };
