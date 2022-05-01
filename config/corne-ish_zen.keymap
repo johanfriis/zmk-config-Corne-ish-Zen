@@ -44,8 +44,19 @@
       compatible = "zmk,behavior-hold-tap";
       label = "MO_REPEAT";
       #binding-cells = <2>;
-      flavor = "tap-unless-interrupted";
+      flavor = "tap-preferred";
       tapping-term-ms = <120>;
+      bindings = <&mo>, <&key_repeat>;
+    };
+
+    // A hold-tap that activates without delay (like `&mo`)
+    mo_tap: mo_with_tap {
+      compatible = "zmk,behavior-hold-tap";
+      label = "MO_WITH_TAP";
+      #binding-cells = <2>;
+      tapping_term_ms = <0>;
+      retro-tap;
+      flavor = "hold-preferred";
       bindings = <&mo>, <&key_repeat>;
     };
 
@@ -95,7 +106,7 @@
         // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
              XXXXX   &kp J         &kp DOT       &kp L         &kp P         &kp B             &kp G         &kp M         &kp SEMI      &kp SLASH     &kp Z         XXXXX
         // ╰───────┴─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴───────╯
-                                                 _____         &skq LSHIFT   &mr NAV 0         &kp SPACE     &skq LSHIFT   _____
+                                                 _____         &skq LSHIFT   &mo_tap NAV 0         &kp SPACE     &skq LSHIFT   _____
         //                                     ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
       >;
     };
