@@ -73,7 +73,7 @@
         XXXXXXX  ___Y___  _COMMA_  ___H___  ___W___  ___F___    ___Q___  ___K___  ___O___  ___U___  ___X___  XXXXXXX
         XXXXXXX  ___S___  ___I___  ___N___  ___D___  ___C___    ___V___  ___T___  ___A___  ___E___  ___R___  XXXXXXX
         XXXXXXX  ___J___  __DOT__  ___L___  ___P___  ___B___    ___G___  ___M___  __SEMI_  _SLASH_  ___Z___  XXXXXXX
-                                   _______  _CWORD_  __RPT__    _SPACE_  _CWORD_  _______
+                                   _______  _CWORD_  NAV_RPT    _SPACE_  _CWORD_  _______
       >;
     };
 
