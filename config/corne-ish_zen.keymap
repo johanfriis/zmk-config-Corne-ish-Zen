@@ -60,7 +60,7 @@
         XXXXXXX  ___y___  _COMMA_  ___h___  ___w___  ___f___    ___q___  ___k___  ___o___  ___u___  ___x___  XXXXXXX
         XXXXXXX  ___s___  ___i___  ___n___  ___d___  ___c___    ___v___  ___t___  ___a___  ___e___  ___r___  XXXXXXX
         XXXXXXX  ___j___  __DOT__  ___l___  ___p___  ___b___    ___g___  ___m___  __SEMI_  _SLASH_  ___z___  XXXXXXX
-                                   &key_repeat  _LSHFT_  __RPT__    _SPACE_  _LSHFT_  _______
+                                   _______  _LSHFT_  NAV_RPT    _SPACE_  _LSHFT_  _______
       >;
     };
 
