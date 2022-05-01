@@ -17,10 +17,19 @@
 
 
 
-#define wswap LG(NON_US_BACKSLASH)
+#define WSWAP LG(NON_US_BACKSLASH)
 #define win_next LS(LG(NON_US_BACKSLASH))
-#define tab_l LS(LG(LEFT_BRACKET))
-#define tab_r LS(LG(RIGHT_BRACKET))
+#define TABL LS(LG(LEFT_BRACKET))
+#define TABR LS(LG(RIGHT_BRACKET))
+
+#define UNDO LG(Z)
+#define REDO LS(LG(Z))
+#define COPY LG(C)
+#define PASTE LG(V)
+#define CUT LG(X)
+#define SELECT LG(A)
+
+
 
 &kscan0 {
   debounce-period = <14>;
@@ -64,7 +73,7 @@
       #binding-cells = <2>;
       flavor = "hold-preferred";
       tapping-term-ms = <200>;
-      bindings = <&sl>, <&key_repeat>;
+      bindings = <&mo>, <&key_repeat>;
     };
 
     // A hold-tap that activates without delay (like `&mo`)
@@ -133,36 +142,16 @@
       label = "NAV";
       bindings = <
         // ╭───────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬───────╮
-             XXXXX   &kp ESC       _____         SK(LCTRL)     SK(RGUI)      _____             _____         &kp BSPC      &kp UP        &kp DEL       _____         XXXXX
+             XXXXX   &kp ESC       _____         SK(LCTRL)     SK(RGUI)      _____             &kp WSWAP     &kp BSPC      &kp UP        &kp DEL       _____         XXXXX
         // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
-             XXXXX   _____         SK(LSHIFT)    SK(LALT)      SK(LGUI)      &kp wswap         _____         &kp LEFT      &kp DOWN      &kp RIGHT     _____         XXXXX
+             XXXXX   &kp REDO      SK(LSHIFT)    SK(LALT)      SK(LGUI)      _____             _____         &kp LEFT      &kp DOWN      &kp RIGHT     _____         XXXXX
         // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
-             XXXXX   _____         _____         _____         _____         _____             _____         &kp TAB       &kp tab_l     &kp tab_r     _____         XXXXX
+             XXXXX   &kp UNDO      &kp CUT       &kp COPY      &kp PASTE     &kp SELECT        _____         &kp TAB       &kp TABL      &kp TABR      _____         XXXXX
         // ╰───────┴─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴───────╯
-                                                 _____         _____         _____             &kp ENTER     _____         _____
+                                                 _____         _____         _____             &kp SPACE     &kp ENTER     _____
         //                                     ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
       >;
     };
-
-
-//    base_layer {
-//      label = "DEF";
-//      bindings = <
-//        XXXXXXX  ___Y___  _COMMA_  ___H___  ___W___  ___F___    ___Q___  ___K___  ___O___  ___U___  ___X___  XXXXXXX
-//        XXXXXXX  ___S___  ___I___  ___N___  ___D___  ___C___    ___V___  ___T___  ___A___  ___E___  ___R___  XXXXXXX
-//        XXXXXXX  ___J___  __DOT__  ___L___  ___P___  ___B___    ___G___  ___M___  __SEMI_  _SLASH_  ___Z___  XXXXXXX
-//                                   _______  _LSHFT_  NAV_RPT    _SPACE_  _LSHFT_  _______
-//      >;
-//    };
-
-         //    nav_layer {
-         //      label = "NAV";
-         //      bindings = <
-         //        XXXXXXX  _______  _LCTRL_  _LOPT__  _LCTRL_  _______    _______  _BKSPC_  __UP___  __DEL__  _______  XXXXXXX
-         //        XXXXXXX  _______  _______  _LCMD__  _LSHFT_  _______    _______  _LEFT__  _DOWN__  _RIGHT_  _______  XXXXXXX
-         //        XXXXXXX  _______  _______  _______  _______  _______    _______  __TAB__  o_TABL_  o_TABR_  _______  XXXXXXX
-         //                                   _______  _______  _______    _SPACE_  _ENTER_  _______
-         //      >;
-         //    };
   };
 };
+
