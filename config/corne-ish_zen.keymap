@@ -25,7 +25,7 @@
 / {
 
   behaviors {
-    #include "behaviors/mo-layer-or-repeat.dtsi"
+    #include "mo-layer-or-repeat.dtsi"
 
 
 
