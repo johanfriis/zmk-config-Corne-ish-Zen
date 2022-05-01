@@ -1,5 +1,5 @@
-#define XXXX &none
-#define ____ &trans
+#define XXXXX &none
+#define _____ &trans
 
 #define DEF 0
 #define NAV 1
