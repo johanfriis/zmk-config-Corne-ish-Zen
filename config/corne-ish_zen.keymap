@@ -14,22 +14,8 @@
 
 #define SK(KEY) &nk KEY KEY
 #define MR(LAYER) &mr LAYER 0
-
-
-
-#define WSWAP LG(NON_US_BACKSLASH)
-#define win_next LS(LG(NON_US_BACKSLASH))
-#define TABL LS(LG(LEFT_BRACKET))
-#define TABR LS(LG(RIGHT_BRACKET))
-
-#define UNDO LG(Z)
-#define REDO LS(LG(Z))
-#define COPY LG(C)
-#define PASTE LG(V)
-#define CUT LG(X)
-#define SELECT LG(A)
-
-
+#define SQ(KEY) &skq KEY
+#define LT(LAYER, KEY) &lt LAYER KEY
 
 &kscan0 {
   debounce-period = <14>;
@@ -51,9 +37,9 @@
       compatible = "zmk,behavior-sticky-key";
       label = "STICKY_KEY_QUICK_RELEASE";
       #binding-cells = <1>;
-      bindings = <&kp>;
       quick-release;
       release-after-ms = <STICKY_KEY_TIMEOUT>;
+      bindings = <&kp>;
     };
     
     // Sticky key on tap, normal key on hold
@@ -106,6 +92,32 @@
     #include "combos.dtsi"
   };
 
+#define WSWAP LG(NON_US_BACKSLASH)
+#define win_next LS(LG(NON_US_BACKSLASH))
+#define TABL LS(LG(LEFT_BRACKET))
+#define TABR LS(LG(RIGHT_BRACKET))
+
+#define UNDO LG(Z)
+#define REDO LS(LG(Z))
+#define COPY LG(C)
+#define PASTE LG(V)
+#define CUT LG(X)
+#define SELECT LG(A)
+
+#define DSKT1 &kp LS(LC(LA(LG(N1))))
+#define DSKT2 &kp LS(LC(LA(LG(N2))))
+#define DSKT3 &kp LS(LC(LA(LG(N3))))
+#define DSKT4 &kp LS(LC(LA(LG(N4))))
+#define DSKT5 &kp LS(LC(LA(LG(N5))))
+#define DSKT6 &kp LS(LC(LA(LG(N6))))
+
+#define DSKT SQ(LS(LC(LA(LGUI))))
+
+
+
+
+
+
   keymap {
     compatible = "zmk,keymap";
 
@@ -133,7 +145,7 @@
         // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
              XXXXX   &kp J         &kp DOT       &kp L         &kp P         &kp B             &kp G         &kp M         &kp SEMI      &kp SLASH     &kp Z         XXXXX
         // ╰───────┴─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴───────╯
-                                                 _____         &skq LSHIFT   MR(NAV)           &kp SPACE     &skq LSHIFT   _____
+                                                 _____         SQ(LSHIFT)    MR(NAV)           LT(NAV, SPC)  SQ(RSHIFT)    _____
         //                                     ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
       >;
     };
@@ -152,6 +164,24 @@
         //                                     ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
       >;
     };
+
+    num_layer {
+      label = "NUM";
+      bindings = <
+        // ╭───────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬───────╮
+             XXXXX   _____         &kp N7        &kp N8        &kp N9        _____             _____         _____         _____         _____         _____         XXXXX
+        // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
+             XXXXX   _____         &kp N4        &kp N5        &kp N6        _____             DSKT          _____         _____         _____         _____         XXXXX
+        // ├───────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼───────┤
+             XXXXX   _____         &kp N1        &kp N2        &kp N3        _____             _____         _____         _____         _____         _____         XXXXX
+        // ╰───────┴─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴───────╯
+                                                 _____         _____         _____             _____         _____         _____
+        //                                     ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+      >;
+    };
+
+
+
   };
 };
 
