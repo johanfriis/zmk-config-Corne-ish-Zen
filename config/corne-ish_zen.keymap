@@ -108,8 +108,6 @@
     */
 
     COMBO(caps_word, &caps_word, 37 40, DEF)
-    COMBO(kp_q, &kp q, 1 2, DEF)
-    COMBO(kp_z, &kp z, 2 3, DEF)
   };
 
 
