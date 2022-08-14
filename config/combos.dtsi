@@ -18,3 +18,5 @@ compatible = "zmk,combos";
   };
 
 COMBO(caps_word, &caps_word, 37 40, DEF)
+COMBO(kp_q, &kp Q, 1 2, DEF)
+COMBO(kp_z, &kp Z, 2 3, DEF)
