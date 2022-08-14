@@ -146,7 +146,8 @@
 
 
     base_layer {
-      label = "Aptmak modded";
+      label = "DEF";
+//      label = "Aptmak modded";
       bindings = <
         // ╭───────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬───────╮
              XXXXX   &kp X         &kp W         &kp F         &kp P         &kp B             &kp J         &kp L         &kp U         &kp Y         &kp SQT       XXXXX
