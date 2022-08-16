@@ -17,7 +17,7 @@
  * Sticky key that does not time out rapidly
  * Useful for simulating one-shot shift 
  */
-ZMK_BEHAVIOR(sk, sticky_key,
+ZMK_BEHAVIOR(stk, sticky_key,
   quick-release;
   release-after-ms = <STICKY_KEY_TIMEOUT>;
 )
@@ -57,7 +57,7 @@ ZMK_LAYER(def_layer,
 // ├─────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────┤
      _X_   XXXXXXXXXXX   _____V_____   _____C_____   _____D_____   XXXXXXXXXXX       XXXXXXXXXXX   _____M_____   ___COMMA___   ____DOT____   XXXXXXXXXXX   _X_
 // ╰─────┴─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────┴─────╯
-                                       ___________   &sk LSHIFT    &lt NAV SPC       &lt NUM E     &sk RSHIFT    ___________
+                                       ___________   &stk LSHIFT   &lt NAV SPC       &lt NUM E     &stk RSHIFT   ___________
 //                                   ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
 )
 
