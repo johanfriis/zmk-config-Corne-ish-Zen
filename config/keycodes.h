@@ -1,4 +1,4 @@
-#define X &none
+#define _X_ &none
 #define XXXXXXXXXXX &none
 #define ___________ &none
 
