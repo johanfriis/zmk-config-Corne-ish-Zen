@@ -2,7 +2,7 @@
 #define XXXXXXXXXXX &none
 #define ___________ &none
 
-#define __DESKTOP__ SQ(LS(LC(LA(LGUI))))
+#define __DESKTOP__ &sk (LS(LC(LA(LGUI))))
 #define __WINSWAP__ &kp LG(NON_US_BACKSLASH)
 
 #define ___TABL____ &kp LS(LG(LEFT_BRACKET))
