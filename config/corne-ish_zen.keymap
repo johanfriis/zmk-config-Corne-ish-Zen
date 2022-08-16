@@ -21,7 +21,6 @@ ZMK_BEHAVIOR(sk, sticky_key,
   quick-release;
   release-after-ms = <STICKY_KEY_TIMEOUT>;
 )
-#define SK(KEY) &sk KEY
 
 /**
  * Sticky key on tap, normal key on hold
@@ -32,8 +31,6 @@ ZMK_BEHAVIOR(tp, hold_tap,
   flavor = "tap-preferred";
 )
 #define TP(KEY) &tp KEY KEY 
-
-#define LT(LAYER, KEY) &lt LAYER KEY
 
 /**
 // ╭─────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────╮
