@@ -7,7 +7,7 @@ manifest:
   projects:
     - name: zmk
       remote: johanfriis
-      revision: corne-ish_zen
+      revision: main
       import: app/west.yml
   self:
     path: config
