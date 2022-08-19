@@ -1,10 +1,12 @@
 manifest:
   remotes:
-    - name: zmk
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: johanfriis
       url-base: https://github.com/johanfriis
   projects:
     - name: zmk
-      remote: zmk
+      remote: johanfriis
       revision: corne-ish_zen
       import: app/west.yml
   self:
