@@ -13,5 +13,5 @@
 #
 ---
 include:
-  - board: corne-ish_zen_left
-  - board: corne-ish_zen_right
+  - board: zen_left
+  - board: zen_right
