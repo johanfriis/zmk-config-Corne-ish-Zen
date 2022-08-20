@@ -8,6 +8,15 @@
 #define ___TABL____ &kp LS(LG(LEFT_BRACKET))
 #define ___TABR____ &kp LS(LG(RIGHT_BRACKET))
 
+#define ___LGUI____ &kp LGUI
+#define ___RGUI____ &kp RGUI
+#define ___LALT____ &kp LALT
+#define ___RALT____ &kp RALT
+#define ___LCTL____ &kp LCTRL
+#define ___RCTL____ &kp RCTRL
+#define ___LSFT____ &kp LSHFT
+#define ___RSFT____ &kp RSHFT
+
 #define ___UNDO____ &kp LG(Z)
 #define ___REDO____ &kp LS(LG(Z))
 #define ___COPY____ &kp LG(C)
@@ -19,6 +28,8 @@
 #define ____UP_____ &kp UP
 #define ___DOWN____ &kp DOWN
 #define ___RIGHT___ &kp RIGHT
+#define ___PGUP____ &kp PG_DN
+#define ___PGDN____ &kp PG_UP
 
 #define ___SPACE___ &kp SPACE
 #define ____TAB____ &kp TAB
@@ -28,7 +39,7 @@
 #define ____ESC____ &kp ESC
 
 #define _____A_____ &kp A
-#define _____B_____ &kp B
+#define _____B_____ &kp Bx
 #define _____C_____ &kp C
 #define _____D_____ &kp D
 #define _____E_____ &kp E
@@ -63,12 +74,12 @@
 #define ___MINUS___ &kp MINUS
 #define ___PLUS____ &kp PLUS
 #define ___COLON___ &kp COLON
-#define ____SEMI___ &kp SEMICOLON
+#define ___SEMI____ &kp SEMICOLON
 #define ___PIPE____ &kp PIPE
 #define ___GRAVE___ &kp GRAVE
 #define ___EQUAL___ &kp EQUAL
-#define ____DOT____ &kp DOT
-#define ____AMP____ &kp AMPERSAND
+#define ___DOT_____ &kp DOT
+#define ___AMP_____ &kp AMPERSAND
 #define ___SLASH___ &kp SLASH
 #define ___STAR____ &kp STAR
 #define ___SQUOT___ &kp SINGLE_QUOTE
@@ -96,3 +107,31 @@
 #define ___BT_00___ &bt BT_SEL 0
 #define ___BT_01___ &bt BT_SEL 1
 #define ___BT_02___ &bt BT_SEL 2
+
+// short versions used for macro definitions
+#define __A__ &kp A
+#define __B__ &kp B
+#define __C__ &kp C
+#define __D__ &kp D
+#define __E__ &kp E
+#define __F__ &kp F
+#define __G__ &kp G
+#define __H__ &kp H
+#define __I__ &kp I
+#define __J__ &kp J
+#define __K__ &kp K
+#define __L__ &kp L
+#define __M__ &kp M
+#define __N__ &kp N
+#define __O__ &kp O
+#define __P__ &kp P
+#define __Q__ &kp Q
+#define __R__ &kp R
+#define __S__ &kp S
+#define __T__ &kp T
+#define __U__ &kp U
+#define __V__ &kp V
+#define __W__ &kp W
+#define __X__ &kp X
+#define __Y__ &kp Y
+#define __Z__ &kp Z
