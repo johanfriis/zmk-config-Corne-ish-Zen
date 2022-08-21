@@ -14,7 +14,7 @@
 #define STICKY_KEY_TIMEOUT 60000
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
-// &lt { quick_tap_ms = <200>; };
+&lt { quick_tap_ms = <200>; };
 
 #define DEF 0
 #define NAV 1
@@ -52,6 +52,7 @@ ZMK_BEHAVIOR(hm, hold_tap,
   flavor = "tap-preferred";
   tapping-term-ms = <250>;
   quick-tap-ms = <250>;
+  // global-quick-tap;
   bindings = <&kp>, <&kp>;
 )
 
@@ -92,7 +93,7 @@ ZMK_LAYER(nav_layer,
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
      &kp UNDO      &kp CUT       &kp COPY      &kp PASTE     &kp REDO          ___________   &kp TAB       &kp TABL      &kp TABR      ___________ 
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                               ___________   ___________       ___________   ___________
+                                               ___________   ___________       &kp SPACE     &kp ENTER
 //                                           ╰─────────────┴─────────────╯   ╰─────────────┴─────────────╯ 
 )
 
@@ -148,4 +149,3 @@ ZMK_BEHAVIOR(mr, hold_tap,
                                                ___________   ___________       ___________   ___________
 //                                           ╰─────────────┴─────────────╯   ╰─────────────┴─────────────╯ 
  */
-
