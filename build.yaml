@@ -13,6 +13,6 @@
 #
 ---
 include:
-  - board: zephyr
+  - board: zaphod
   # - board: zen_left
   # - board: zen_right
