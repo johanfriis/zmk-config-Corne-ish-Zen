@@ -2,6 +2,19 @@
 #define ___________ &none
 
 /**
+ * Undefine deprecated keys that I'm redefining below
+ */
+#undef LCTL
+#undef RCTL
+#undef LSFT
+#undef RSFT
+#undef UNDO
+#undef COPY
+#undef CUT
+#undef PGUP
+#undef PGDN
+
+/**
  * Nice and short versions of all the mods
  */
 #define LCTL        LCTRL
@@ -26,9 +39,6 @@
 #define CUT         LG(X)
 #define SELECT      LG(A)
 
-#define BRIMN       F14
-#define BRIMX       F15
-
 #define SCRSH       LS(LG(N4))
 
 /**
@@ -36,6 +46,13 @@
  */
 #define PGUP        PG_UP
 #define PGDN        PG_DN
+
+/**
+ * Alias for simple keys
+ */
+#define BRIMN       F14
+#define BRIMX       F15
+
 
 /**
  * Danish!
