@@ -1,12 +1,54 @@
-#define _X_ &none
 #define XXXXXXXXXXX &none
 #define ___________ &none
 
-#define __DESKTOP__ &sk (LS(LC(LA(LGUI))))
-#define __WINSWAP__ &kp LG(NON_US_BACKSLASH)
+/**
+ * Nice and short versions of all the mods
+ */
+#define LCTL        LCTRL
+#define RCTL        RCTRL
+#define LSFT        LSHFT
+#define RSFT        RSHFT
 
-#define ___TABL____ &kp LS(LG(LEFT_BRACKET))
-#define ___TABR____ &kp LS(LG(RIGHT_BRACKET))
+/**
+ * Various composed keys
+ */
+#define MISSION     LS(LC(LA(LG(N8))))
+#define NEXTWIN     LG(NON_US_BACKSLASH)
+#define DESKSWP     LS(LC(LA(LGUI)))
+
+#define TABL        LS(LG(LEFT_BRACKET))
+#define TABR        LS(LG(RIGHT_BRACKET))
+
+#define UNDO        LG(Z)
+#define REDO        LS(LG(Z))
+#define COPY        LG(C)
+#define PASTE       LG(V)
+#define CUT         LG(X)
+#define SELECT      LG(A)
+
+#define BRIMN       F14
+#define BRIMX       F15
+
+#define SCRSH       LS(LG(N4))
+
+/**
+ * Renamed shorter versions of keys
+ */
+#define PGUP        PG_UP
+#define PGDN        PG_DN
+
+/**
+ * Danish!
+ */
+#define ARING       RA(A)
+#define OSLSH       RA(O)
+#define AELIG       RA(SINGLE_QUOTE)
+
+
+/**
+ * Legacy keys
+ */
+
 
 #define ___LGUI____ &kp LGUI
 #define ___RGUI____ &kp RGUI
@@ -39,7 +81,7 @@
 #define ____ESC____ &kp ESC
 
 #define _____A_____ &kp A
-#define _____B_____ &kp Bx
+#define _____B_____ &kp B
 #define _____C_____ &kp C
 #define _____D_____ &kp D
 #define _____E_____ &kp E

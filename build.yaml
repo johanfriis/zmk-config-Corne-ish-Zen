@@ -13,5 +13,6 @@
 #
 ---
 include:
-  - board: zen_left
-  - board: zen_right
+  - board: zephyr
+  # - board: zen_left
+  # - board: zen_right
