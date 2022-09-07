@@ -26,7 +26,7 @@
  * Various composed keys
  */
 #define MISSION     LS(LC(LA(LG(N8))))
-#define NEXTWIN     LG(NON_US_BACKSLASH)
+#define NEXTWIN     LG(GRAVE)
 #define DESKSWP     LS(LC(LA(LGUI)))
 
 #define TABL        LS(LG(LEFT_BRACKET))
