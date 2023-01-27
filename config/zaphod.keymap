@@ -18,6 +18,8 @@
 #define NUM 2
 #define SYM 3
 #define FUN 4
+#define RST 5
+
 
 /**
  * Sticky key that does not time out rapidly
@@ -145,6 +147,25 @@ ZMK_LAYER(fun_layer,
 )
 
 
+/**
+ * This is a variant of AptHD based on
+ * https://github.com/Apsu/APTHD
+ */
+ZMK_LAYER(rst_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     &kp X         &kp C         &kp Y         &kp D         &kp B             &kp SEMI      &kp L         &kp U         &kp M         &kp SQUOT
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &hm LCTL R    &hm LALT S    &hm LGUI T    &hm LSFT H    &kp K             &kp J         &hm RSFT N    &hm RGUI A    &hm RALT I    &hm RCTL O 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &kp V         &kp G         &kp F         &kp P         &kp Q             &kp Z         &kp W         &kp COMMA     &kp DOT       &kp SLASH 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                               &mo FUN       &lt NAV E         &lt NUM SPC   &mo SYM
+//                                           ╰─────────────┴─────────────╯   ╰─────────────┴─────────────╯ 
+)
+
+
+
+
 /*                KEY POSITIONS
 
   ╭────────────────────╮ ╭────────────────────╮
@@ -157,6 +178,7 @@ ZMK_LAYER(fun_layer,
 
 
 ZMK_COMBO(caps_word, &caps_word, 30 33, DEF)
+ZMK_COMBO(tog_rst, &tog 5, 0 9)
 
 
 /**
