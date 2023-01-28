@@ -178,7 +178,7 @@ ZMK_LAYER(rst_layer,
 
 
 ZMK_COMBO(caps_word, &caps_word, 30 33, DEF)
-ZMK_COMBO(tog_rst, &tog 5, 0 9)
+ZMK_COMBO(tog_rst, &tog RST, 0 9, DEF RST)
 
 
 /**
