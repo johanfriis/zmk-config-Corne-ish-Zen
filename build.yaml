@@ -14,5 +14,5 @@
 ---
 include:
   #- board: zaphod
-  - board: zen_left
-  - board: zen_right
+  - board: corneish_zen_v1_left
+  - board: corneish_zen_v1_right
