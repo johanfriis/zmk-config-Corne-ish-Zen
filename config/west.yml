@@ -5,7 +5,7 @@ manifest:
   projects:
     - name: zmk
       remote: caksoylar
-      revision: zen-unified
+      revision: caksoylar/zen-unified
       import: app/west.yml
   self:
     path: config
