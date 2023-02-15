@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2021 Darryl deHaan
+# Copyright (c) 2022 Darryl deHaan
 # SPDX-License-Identifier: MIT
 #
 
@@ -19,7 +19,7 @@ config BOARD
 	default "zen"
 
 config ZMK_SPLIT
-	default y 
+	default y
 
 config I2C
 	bool
@@ -33,6 +33,13 @@ config ZMK_BLE
 
 config ZMK_USB
 	default y
+
+menuconfig SENSOR
+	bool "Sensor Drivers"
+
+config BQ274XX
+	bool "BQ274xx Fuel Gauge"
+	depends on I2C && SENSOR
 
 if USB
 

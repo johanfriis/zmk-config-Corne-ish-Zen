@@ -8,22 +8,22 @@
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
 
-#include <dt-bindings/zmk/matrix-transform.h>
+#include <dt-bindings/zmk/matrix_transform.h>
 
 / {
-	model = "zen";
+	model = "Corne-ish Zen";
 	compatible = "zen";
 
 	chosen {
-		zmk,kscan = &kscan0;
+		zephyr,code-partition = &code_partition;
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
+		zmk,kscan = &kscan0;
 		zephyr,console = &cdc_acm_uart;
-		zmk,matrix_transform = &transform;
-		zephyr,code-partition = &code_partition;
+		zmk,matrix_transform = &default_transform;
 	};
 
-	transform: transform {
+	default_transform: keymap_transform_1 {
 		compatible = "zmk,matrix-transform";
 		columns = <10>;
 		rows = <4>;
@@ -32,15 +32,15 @@
 			// | SW8  | SW9  | SW10 | SW11 | SW12 |   | SW12 | SW11 | SW10 | SW9  | SW8  |
 			// | SW14 | SW15 | SW16 | SW17 | SW18 |   | SW18 | SW17 | SW16 | SW15 | SW14 |
 			//               | SW19 | SW20 | SW21 |   | SW21 | SW20 | SW19 |
-					map = <
-			RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)   RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10)
-			RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)   RC(1,6) RC(1,7) RC(1,8) RC(1,9) RC(1,10)
-			RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)   RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10)
-							        RC(3,3) RC(3,4) RC(3,5)   RC(3,6) RC(3,7) RC(3,8)
+		map = <
+			RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)  RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10)
+			RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)  RC(1,6) RC(1,7) RC(1,8) RC(1,9) RC(1,10)
+			RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)  RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10)
+			                RC(3,3) RC(3,4) RC(3,5)  RC(3,6) RC(3,7) RC(3,8)
 		>;
 	};
-};
 
+};
 
 &adc {
 	status = "okay";
@@ -66,17 +66,6 @@
 	};
 };
 
-&uart0 {
-	compatible = "nordic,nrf-uarte";
-	status = "okay";
-	current-speed = <115200>;
-	tx-pin = <39>;
-	rx-pin = <44>;
-	rts-pin = <34>;
-	cts-pin = <9>;
-};
-
-
 &flash0 {
 	/*
 	 * For more information, see:
@@ -91,7 +80,6 @@
 			label = "softdevice";
 			reg = <0x00000000 0x00026000>;
 		};
-
 		code_partition: partition@26000 {
 			label = "code_partition";
 			reg = <0x00026000 0x000c6000>;

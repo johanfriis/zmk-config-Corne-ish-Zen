@@ -1,6 +1,7 @@
 identifier: zen
 name: Corne-ish Zen
-type: keyboard
+url: https://lowprokb.ca/collections/keyboards/products/corne-ish-zen
+type: board
 arch: arm
 toolchain:
   - zephyr
