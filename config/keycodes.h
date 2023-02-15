@@ -112,6 +112,29 @@
 #define ___EXCLM___ &kp EXCLAMATION
 #define ___QUEST___ &kp QUESTION
 
+#define ___LEFT____ &kp LEFT
+#define ____UP_____ &kp UP
+#define ___DOWN____ &kp DOWN
+#define ___RIGHT___ &kp RIGHT
+
+#define ___SPACE___ &kp SPACE
+#define ____TAB____ &kp TAB
+#define ___ENTER___ &kp ENTER
+#define ___BKSPC___ &kp BACKSPACE
+#define ____DEL____ &kp DELETE
+#define ____ESC____ &kp ESC
+
+#define ___LGUI____ &kp LGUI
+#define ___RGUI____ &kp RGUI
+#define ___LOPT____ &kp LALT
+#define ___ROPT____ &kp RALT
+#define ___LCTL____ &kp LCTRL
+#define ___RCTL____ &kp RCTRL
+#define ___LSFT____ &kp LSHFT
+#define ___RSFT____ &kp RSHFT
+
+#define ___TABL____ &kp LS(LG(LEFT_BRACKET))
+#define ___TABR____ &kp LS(LG(RIGHT_BRACKET))
 /**
  * short versions used for macro definitions
  */
@@ -147,14 +170,6 @@
  */
 
 
-// #define ___LGUI____ &kp LGUI
-// #define ___RGUI____ &kp RGUI
-// #define ___LALT____ &kp LALT
-// #define ___RALT____ &kp RALT
-// #define ___LCTL____ &kp LCTRL
-// #define ___RCTL____ &kp RCTRL
-// #define ___LSFT____ &kp LSHFT
-// #define ___RSFT____ &kp RSHFT
 
 // #define ___UNDO____ &kp LG(Z)
 // #define ___REDO____ &kp LS(LG(Z))
