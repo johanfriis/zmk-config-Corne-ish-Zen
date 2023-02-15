@@ -1,3 +1,10 @@
+/*
+*
+* Copyright (c) 2021 Darryl deHaan
+* SPDX-License-Identifier: MIT
+*
+*/
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -5,53 +12,109 @@
 #include "./helpers.h"
 #include "./keycodes.h"
 
+&mt {
+    tapping-term-ms = <201>;
+    flavor = "tap-preferred";
+ };
+&sk {
+     release-after-ms = <2000>;
+     quick-release;
+ };
+
 #define STICKY_KEY_TIMEOUT 60000
 
 #define DEF 0
-#define NAV 1
-#define NUM 2
-#define SYM 3
-#define FUN 4
+#define LWR 1
+#define UPR 2
+#define NAV 3
+#define NUM 4
+#define SYM 5
+#define SOM 6
+#define FUN 7
+#define SYS 8
 
-/**
- * Sticky key that does not time out rapidly
- * Useful for simulating one-shot shift 
- */
-ZMK_BEHAVIOR(stk, sticky_key,
-  quick-release;
-  release-after-ms = <STICKY_KEY_TIMEOUT>;
-  bindings = <&kp>;
-)
-
-/**
- * Sticky key on tap, normal key on hold
- * Useful for modifier-clicking without the modifier remaining active
- */
-ZMK_BEHAVIOR(tp, hold_tap,
-  tapping_term_ms = <200>;
+ZMK_BEHAVIOR(homerow_mods, hold_tap,
   flavor = "tap-preferred";
-  bindings = <&kp>, <&sk>;
+  tapping-term-ms = <300>;
+  quick-tap-ms = <250>;
+  bindings = <&kp>, <&kp>;
 )
-#define TP(KEY) &tp KEY KEY 
 
-ZMK_BEHAVIOR(hm, hold_tap,
-    flavor = "tap-preferred";
-    tapping-term-ms = <250>;
-    quick-tap-ms = <250>;
-    // global-quick-tap;
-    bindings = <&kp>, <&kp>;
+#define HM(LAYER, KEY) &homerow_mods LAYER KEY 
+
+#define HMLG(KEY) &homerow_mods LEFT_GUI      KEY 
+#define HMLA(KEY) &homerow_mods LEFT_ALT      KEY 
+#define HMLC(KEY) &homerow_mods LEFT_CONTROL  KEY 
+#define HMLS(KEY) &homerow_mods LEFT_SHIFT    KEY 
+
+#define HMRG(KEY) &homerow_mods RIGHT_GUI     KEY 
+#define HMRA(KEY) &homerow_mods RIGHT_ALT     KEY 
+#define HMRC(KEY) &homerow_mods RIGHT_CONTROL KEY 
+#define HMRS(KEY) &homerow_mods RIGHT_SHIFT   KEY 
+
+ZMK_BEHAVIOR(homerow_layers, hold_tap,
+  flavor = "tap-preferred";
+  tapping-term-ms = <220>;
+  quick-tap-ms = <250>;
+  bindings = <&mo>, <&kp>;
 )
-#define HM(LAYER, KEY) &hm LAYER KEY 
+
+#define HL(LAYER, KEY) &homerow_mods_left LAYER KEY 
+
+#define LNAV(KEY) &homerow_mods NAV KEY 
+#define LNUM(KEY) &homerow_mods NUM KEY 
+#define LSYM(KEY) &homerow_mods SYM KEY 
+#define LSOM(KEY) &homerow_mods SOM KEY 
 
 
-#define HMLG(KEY) &hm LEFT_GUI      KEY 
-#define HMLA(KEY) &hm LEFT_ALT      KEY 
-#define HMLC(KEY) &hm LEFT_CONTROL  KEY 
-#define HMLS(KEY) &hm LEFT_SHIFT    KEY 
-#define HMRG(KEY) &hm RIGHT_GUI     KEY 
-#define HMRA(KEY) &hm RIGHT_ALT     KEY 
-#define HMRC(KEY) &hm RIGHT_CONTROL KEY 
-#define HMRS(KEY) &hm RIGHT_SHIFT   KEY 
+ZMK_BEHAVIOR(alpha_lwr, macro,
+  bindings = <&sl LWR>;
+)
+
+ZMK_BEHAVIOR(alpha_upr, macro,
+  bindings = <&sl UPR>;
+)
+
+#define UPER(KEY) &kp LS(KEY)
+
+
+
+ZMK_LAYER(def_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   HMLC(__L__)   HMLA(__G__)   HMLG(__D__)   XXXXXXXXXXX       XXXXXXXXXXX   HMRG(__H__)   HMRA(__U__)   HMRC(__O__)   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     LNUM(__I__)   LSOM(__S__)   LSYM(__R__)   LNAV(__T__)   XXXXXXXXXXX       XXXXXXXXXXX   LNAV(__N__)   LSYM(__E__)   LSOM(__A__)   LNUM(__C__) 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   &alpha_upr    &alpha_lwr        &mt MEH SPC   &key_repeat   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(lwr_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   _____V_____   _____W_____   _____M_____   XXXXXXXXXXX       XXXXXXXXXXX   _____F_____   ___SQUOT___   _____Z_____   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     _____Q_____   _____J_____   _____P_____   _____K_____   XXXXXXXXXXX       XXXXXXXXXXX   _____B_____   ___DOT_____   _____X_____   _____Y_____ 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   &alpha_upr        &sk LSFT      XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(upr_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   UPER(__V__)   UPER(__W__)   UPER(__M__)   XXXXXXXXXXX       XXXXXXXXXXX   UPER(__F__)   ___SLASH___   UPER(__Z__)   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     UPER(__Q__)   UPER(__J__)   UPER(__P__)   UPER(__K__)   XXXXXXXXXXX       XXXXXXXXXXX   UPER(__B__)   ___COMMA___   UPER(__X__)   UPER(__Y__) 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       ___________   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
 
 
 /**
@@ -64,91 +127,14 @@ ZMK_BEHAVIOR(hm, hold_tap,
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
                                  ___________   ___________   ___________       ___________   ___________   ___________
 //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯ 
- */
 
-
-
-
-
-/**
- * This is a variant of AptX mak mod based on
- * https://github.com/Apsu/zmk-luna/blob/main/config/luna.keymap
- */
-ZMK_LAYER(def_layer,
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     &kp SLASH     &kp W         &kp M         &kp P         &kp Q             &kp Z         &kp K         &kp COMMA     &kp DOT       &kp SEMI
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     HMLC(__R__)   HMLA(__S__)   HMLG(__N__)   HMLS(__T__)   &kp G             &kp V         HMRS(__H__)    HMRG(__A__)   HMRA(__I__)  HMRC(__O__) 
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     &kp X         &kp C         &kp F         &kp D         &kp B             &kp J         &kp L         &kp U         &kp Y         &kp SQUOT 
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
 // ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                 ___________   &stk LSHIFT   &lt NAV SPC       &lt NUM E     &stk RSHIFT   ___________
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
 //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
-
-// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-//   ___SLASH___   _____W_____   _____M_____   _____P_____   _____Q_____       _____Z_____   _____K_____   ___COMMA___   ____DOT____   ___SEMI____ 
-// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-//   HMLC(__R__)   HMLA(__S__)   HMLG(__N__)   HMLS(__T__)   _____G_____       _____V_____   HMRS(__H__)    HMRG(__A__)   HMRA(__I__)  HMRC(__O__) 
-// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-//   _____X_____   _____C_____   _____F_____   _____D_____   _____B_____       _____J_____   _____L_____   _____U_____   _____Y_____   ___SQUOT___ 
-// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-//                               ___________   &stk LSHIFT   &lt NAV SPC       &lt NUM E     &stk RSHIFT   ___________
-//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
-)
-
-/**
- * 
- */
-ZMK_LAYER(nav_layer,
-// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     ____ESC____   __SELECT___   ___________   ___________   __WINSWAP__       ___PGUP____   ___BKSPC___   ____UP_____   ____DEL____   ___________ 
-// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     ___LCTL____   ___LALT____   ___LGUI____   ___LSFT____   __DESKTOP__       ___PGDN____   ___LEFT____   ___DOWN____   ___RIGHT___   ___________ 
-// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     ___UNDO____   ____CUT____   ___COPY____   ___PASTE___   ___REDO____       ___________   ____TAB____   ___TABL____   ___TABR____   ___________ 
-// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                 ___________   ___________   ___________       ___SPACE___   ___ENTER___   ___________
-//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
-)
-
-/**
- * 
- */
-ZMK_LAYER(num_layer,
-// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-     ___________   _____7_____   _____8_____   _____9_____   ___________       ___________   TP(RGUI)      TP(LCTRL)     ___________   ___________ 
-// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     __DESKTOP__   _____4_____   _____5_____   _____6_____   ___________       ___________   TP(LGUI)      TP(LALT)      TP(LSHIFT)    ___________ 
-// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-     XXXXXXXXXXX   _____1_____   _____2_____   _____3_____   XXXXXXXXXXX       XXXXXXXXXXX   ___________   ___________   ___________   XXXXXXXXXXX 
-// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
-                                 ___________   ___________   _____0_____       ___________   ___________   ___________
-//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯ 
-)
-
-
-/*                KEY POSITIONS
-
-  ╭────────────────────╮ ╭────────────────────╮
-  │  0   1   2   3   4 │ │  5   6   7   8   9 │
-  │ 10  11  12  13  14 │ │ 15  16  17  18  19 │ 
-  │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
-  ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
-          ╰────────────╯ ╰────────────╯
-*/
-
-
-ZMK_COMBO(caps_word, &caps_word, 30 35, DEF)
-ZMK_COMBO(kp_q, &kp Q, 1 2, DEF)
-ZMK_COMBO(kp_z, &kp Z, 2 3, DEF)
-
-
-/**
- * Used for having a repeat key on a layer key
-ZMK_BEHAVIOR(mr, hold_tap,
-  tapping_term_ms = <200>;
-  flavor = "tap-preferred";
-  bindings = <&mo>, <&key_repeat>;
-)
-#define MR(LAYER) &mr LAYER 0
  */

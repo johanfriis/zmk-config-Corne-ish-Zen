@@ -22,6 +22,8 @@
 #define LSFT        LSHFT
 #define RSFT        RSHFT
 
+#define MEH         LC(LS(LALT))
+
 /**
  * Various composed keys
  */
@@ -63,6 +65,84 @@
 
 
 /**
+ * Pretty defines
+ */
+#define _____A_____ &kp A
+#define _____B_____ &kp B
+#define _____C_____ &kp C
+#define _____D_____ &kp D
+#define _____E_____ &kp E
+#define _____F_____ &kp F
+#define _____G_____ &kp G
+#define _____H_____ &kp H
+#define _____I_____ &kp I
+#define _____J_____ &kp J
+#define _____K_____ &kp K
+#define _____L_____ &kp L
+#define _____M_____ &kp M
+#define _____N_____ &kp N
+#define _____O_____ &kp O
+#define _____P_____ &kp P
+#define _____Q_____ &kp Q
+#define _____R_____ &kp R
+#define _____S_____ &kp S
+#define _____T_____ &kp T
+#define _____U_____ &kp U
+#define _____V_____ &kp V
+#define _____W_____ &kp W
+#define _____X_____ &kp X
+#define _____Y_____ &kp Y
+#define _____Z_____ &kp Z
+
+#define ___COMMA___ &kp COMMA
+#define ___UNDRS___ &kp UNDERSCORE
+#define ___MINUS___ &kp MINUS
+#define ___PLUS____ &kp PLUS
+#define ___COLON___ &kp COLON
+#define ___SEMI____ &kp SEMICOLON
+#define ___PIPE____ &kp PIPE
+#define ___GRAVE___ &kp GRAVE
+#define ___EQUAL___ &kp EQUAL
+#define ___DOT_____ &kp DOT
+#define ___AMP_____ &kp AMPERSAND
+#define ___SLASH___ &kp SLASH
+#define ___STAR____ &kp STAR
+#define ___SQUOT___ &kp SINGLE_QUOTE
+#define ___DQUOT___ &kp DOUBLE_QUOTES
+#define ___EXCLM___ &kp EXCLAMATION
+#define ___QUEST___ &kp QUESTION
+
+/**
+ * short versions used for macro definitions
+ */
+#define __A__ A
+#define __B__ B
+#define __C__ C
+#define __D__ D
+#define __E__ E
+#define __F__ F
+#define __G__ G
+#define __H__ H
+#define __I__ I
+#define __J__ J
+#define __K__ K
+#define __L__ L
+#define __M__ M
+#define __N__ N
+#define __O__ O
+#define __P__ P
+#define __Q__ Q
+#define __R__ R
+#define __S__ S
+#define __T__ T
+#define __U__ U
+#define __V__ V
+#define __W__ W
+#define __X__ X
+#define __Y__ Y
+#define __Z__ Z
+
+/**
  * Legacy keys
  */
 
@@ -97,54 +177,10 @@
 // #define ____DEL____ &kp DELETE
 // #define ____ESC____ &kp ESC
 
-// #define _____A_____ &kp A
-// #define _____B_____ &kp B
-// #define _____C_____ &kp C
-// #define _____D_____ &kp D
-// #define _____E_____ &kp E
-// #define _____F_____ &kp F
-// #define _____G_____ &kp G
-// #define _____H_____ &kp H
-// #define _____I_____ &kp I
-// #define _____J_____ &kp J
-// #define _____K_____ &kp K
-// #define _____L_____ &kp L
-// #define _____M_____ &kp M
-// #define _____N_____ &kp N
-// #define _____O_____ &kp O
-// #define _____P_____ &kp P
-// #define _____Q_____ &kp Q
-// #define _____R_____ &kp R
-// #define _____S_____ &kp S
-// #define _____T_____ &kp T
-// #define _____U_____ &kp U
-// #define _____V_____ &kp V
-// #define _____W_____ &kp W
-// #define _____X_____ &kp X
-// #define _____Y_____ &kp Y
-// #define _____Z_____ &kp Z
 
 // #define ___ARING___ &kp RA(A)
 // #define ___OSLSH___ &kp RA(O)
 // #define ___AELIG___ &kp RA(SINGLE_QUOTE)
-
-// #define ___COMMA___ &kp COMMA
-// #define ___UNDRS___ &kp UNDERSCORE
-// #define ___MINUS___ &kp MINUS
-// #define ___PLUS____ &kp PLUS
-// #define ___COLON___ &kp COLON
-// #define ___SEMI____ &kp SEMICOLON
-// #define ___PIPE____ &kp PIPE
-// #define ___GRAVE___ &kp GRAVE
-// #define ___EQUAL___ &kp EQUAL
-// #define ___DOT_____ &kp DOT
-// #define ___AMP_____ &kp AMPERSAND
-// #define ___SLASH___ &kp SLASH
-// #define ___STAR____ &kp STAR
-// #define ___SQUOT___ &kp SINGLE_QUOTE
-// #define ___DQUOT___ &kp DOUBLE_QUOTES
-// #define ___EXCLM___ &kp EXCLAMATION
-// #define ___QUEST___ &kp QUESTION
 
 // #define _____0_____ &kp N0
 // #define _____1_____ &kp N1
@@ -167,30 +203,3 @@
 // #define ___BT_01___ &bt BT_SEL 1
 // #define ___BT_02___ &bt BT_SEL 2
 
-// // short versions used for macro definitions
-// #define __A__ &kp A
-// #define __B__ &kp B
-// #define __C__ &kp C
-// #define __D__ &kp D
-// #define __E__ &kp E
-// #define __F__ &kp F
-// #define __G__ &kp G
-// #define __H__ &kp H
-// #define __I__ &kp I
-// #define __J__ &kp J
-// #define __K__ &kp K
-// #define __L__ &kp L
-// #define __M__ &kp M
-// #define __N__ &kp N
-// #define __O__ &kp O
-// #define __P__ &kp P
-// #define __Q__ &kp Q
-// #define __R__ &kp R
-// #define __S__ &kp S
-// #define __T__ &kp T
-// #define __U__ &kp U
-// #define __V__ &kp V
-// #define __W__ &kp W
-// #define __X__ &kp X
-// #define __Y__ &kp Y
-// #define __Z__ &kp Z
