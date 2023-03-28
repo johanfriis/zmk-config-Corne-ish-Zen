@@ -1,3 +1,5 @@
+#pragma once
+
 #define XXXXXXXXXXX &none
 #define ___________ &trans
 
@@ -14,15 +16,7 @@
 #undef PGUP
 #undef PGDN
 
-/**
- * Nice and short versions of all the mods
- */
-#define LCTL        LCTRL
-#define RCTL        RCTRL
-#define LSFT        LSHFT
-#define RSFT        RSHFT
 
-#define MEH         LC(LS(LALT))
 
 /**
  * Various composed keys
@@ -42,6 +36,8 @@
 #define SELECT      LG(A)
 
 #define SCRSH       LS(LG(N4))
+
+#define MEH         LC(LS(LALT))
 
 /**
  * Renamed shorter / better versions of keys
@@ -94,6 +90,17 @@
 #define _____Y_____ &kp Y
 #define _____Z_____ &kp Z
 
+#define _____0_____ &kp N0
+#define _____1_____ &kp N1
+#define _____2_____ &kp N2
+#define _____3_____ &kp N3
+#define _____4_____ &kp N4
+#define _____5_____ &kp N5
+#define _____6_____ &kp N6
+#define _____7_____ &kp N7
+#define _____8_____ &kp N8
+#define _____9_____ &kp N9
+
 #define ___COMMA___ &kp COMMA
 #define ___UNDRS___ &kp UNDERSCORE
 #define ___MINUS___ &kp MINUS
@@ -103,14 +110,30 @@
 #define ___PIPE____ &kp PIPE
 #define ___GRAVE___ &kp GRAVE
 #define ___EQUAL___ &kp EQUAL
-#define ___DOT_____ &kp DOT
-#define ___AMP_____ &kp AMPERSAND
+#define ____DOT____ &kp DOT
+#define ____AMP____ &kp AMPERSAND
 #define ___SLASH___ &kp SLASH
 #define ___STAR____ &kp STAR
+#define ___HASH____ &kp HASH
+#define ___DLLR____ &kp DOLLAR
+#define ___ATSN____ &kp AT_SIGN
 #define ___SQUOT___ &kp SINGLE_QUOTE
 #define ___DQUOT___ &kp DOUBLE_QUOTES
 #define ___EXCLM___ &kp EXCLAMATION
 #define ___QUEST___ &kp QUESTION
+#define ___PERCT___ &kp PERCENT
+#define ___CARET___ &kp CARET
+#define ___TILDE___ &kp TILDE
+#define ___BSLSH___ &kp BACKSLASH
+
+#define ___LPARN___ &kp LEFT_PARENTHESIS
+#define ___RPARN___ &kp RIGHT_PARENTHESIS
+#define ___LBRAC___ &kp LEFT_BRACE
+#define ___RBRAC___ &kp RIGHT_BRACE
+#define ___LBRKT___ &kp LEFT_BRACKET
+#define ___RBRKT___ &kp RIGHT_BRACKET
+#define ___LANGB___ &kp LESS_THAN
+#define ___RANGB___ &kp GREATER_THAN
 
 #define ___LEFT____ &kp LEFT
 #define ____UP_____ &kp UP
@@ -135,8 +158,10 @@
 
 #define ___TABL____ &kp LS(LG(LEFT_BRACKET))
 #define ___TABR____ &kp LS(LG(RIGHT_BRACKET))
+#define __WINSWP___ &kp LG(NON_US_BACKSLASH)
+
 /**
- * short versions used for macro definitions
+ * Short versions used for macro definitions
  */
 #define __A__ A
 #define __B__ B
@@ -164,6 +189,27 @@
 #define __X__ X
 #define __Y__ Y
 #define __Z__ Z
+
+#define __0__ N0
+#define __1__ N1
+#define __2__ N2
+#define __3__ N3
+#define __4__ N4
+#define __5__ N5
+#define __6__ N6
+#define __7__ N7
+#define __8__ N8
+#define __9__ N9
+
+/**
+ * Nice and short versions of all the mods
+ */
+#define LOPT        LALT
+#define ROPT        RALT
+#define LCTL        LCTRL
+#define RCTL        RCTRL
+#define LSFT        LSHFT
+#define RSFT        RSHFT
 
 /**
  * Legacy keys

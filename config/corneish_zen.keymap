@@ -1,0 +1,241 @@
+/*
+*
+* Copyright (c) 2021 Darryl deHaan
+* SPDX-License-Identifier: MIT
+*
+*/
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+  chosen {
+    zmk,matrix_transform = &five_column_transform;
+  };
+};
+
+
+#include "./helpers.h"
+#include "./keycodes.h"
+
+#define DEF 0
+#define LWR 1
+#define UPR 2
+#define NAV 3
+#define NUM 4
+#define SYM 5
+#define SOM 6
+#define FUN 7
+#define SYS 8
+
+&mt {
+  tapping-term-ms = <201>;
+  flavor = "tap-preferred";
+};
+
+/**
+ * Sticky key that does not time out rapidly
+ * Useful for simulating one-shot shift 
+ */
+#define STICKY_KEY_TIMEOUT 60000
+ZMK_BEHAVIOR(stk, sticky_key,
+  quick-release;
+  release-after-ms = <STICKY_KEY_TIMEOUT>;
+  bindings = <&kp>;
+)
+
+/**
+ * Homerow Mod
+ */
+ZMK_BEHAVIOR(homerow_mod, hold_tap,
+  flavor = "tap-preferred";
+  tapping-term-ms = <300>;
+  quick-tap-ms = <250>;
+  bindings = <&kp>, <&kp>;
+)
+
+#define HM(LAYER, KEY) &homerow_mod LAYER KEY 
+
+#define HMLG(KEY) &homerow_mod LEFT_GUI      KEY 
+#define HMLA(KEY) &homerow_mod LEFT_ALT      KEY 
+#define HMLC(KEY) &homerow_mod LEFT_CONTROL  KEY 
+#define HMLS(KEY) &homerow_mod LEFT_SHIFT    KEY 
+
+#define HMRG(KEY) &homerow_mod RIGHT_GUI     KEY 
+#define HMRA(KEY) &homerow_mod RIGHT_ALT     KEY 
+#define HMRC(KEY) &homerow_mod RIGHT_CONTROL KEY 
+#define HMRS(KEY) &homerow_mod RIGHT_SHIFT   KEY 
+
+/**
+ * Homerow Layer
+ */
+ZMK_BEHAVIOR(homerow_layer, hold_tap,
+  flavor = "tap-preferred";
+  tapping-term-ms = <220>;
+  quick-tap-ms = <250>;
+  bindings = <&mo>, <&kp>;
+)
+
+#define HL(LAYER, KEY) &homerow_mod LAYER KEY 
+
+#define LNAV(KEY) &homerow_layer NAV KEY 
+#define LNUM(KEY) &homerow_layer NUM KEY 
+#define LSYM(KEY) &homerow_layer SYM KEY 
+#define LSOM(KEY) &homerow_layer SOM KEY 
+
+/**
+ * 
+ */
+ZMK_BEHAVIOR(alpha_lwr, macro,
+  bindings = <&sl LWR>;
+)
+
+ZMK_BEHAVIOR(alpha_upr, macro,
+  bindings = <&sl UPR>;
+)
+
+#define SHFT(KEY) &kp LS(KEY)
+
+ZMK_LAYER(def_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   HMLC(__L__)   HMLA(__G__)   HMLG(__D__)   XXXXXXXXXXX       XXXXXXXXXXX   HMRG(__H__)   HMRA(__U__)   HMRC(__O__)   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   LSOM(__S__)   LSYM(__R__)   LNAV(__T__)   XXXXXXXXXXX       XXXXXXXXXXX   LNAV(__N__)   LSYM(__E__)   LSOM(__A__)   XXXXXXXXXXX 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     LNUM(__I__)   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   LNUM(__C__) 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   &alpha_upr    &alpha_lwr        &mt SFT SPC   &key_repeat   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(lwr_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   _____V_____   _____W_____   _____M_____   XXXXXXXXXXX       XXXXXXXXXXX   _____F_____   ___SQUOT___   _____Z_____   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   _____J_____   _____P_____   _____K_____   XXXXXXXXXXX       XXXXXXXXXXX   _____B_____   ___DOT_____   _____X_____   XXXXXXXXXXX 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     _____Q_____   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   _____Y_____
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   &alpha_upr        ___________   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(upr_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   SHFT(__V__)   SHFT(__W__)   SHFT(__M__)   XXXXXXXXXXX       XXXXXXXXXXX   SHFT(__F__)   ___SLASH___   SHFT(__Z__)   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   SHFT(__J__)   SHFT(__P__)   SHFT(__K__)   XXXXXXXXXXX       XXXXXXXXXXX   SHFT(__B__)   ___COMMA___   SHFT(__X__)   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     SHFT(__Q__)   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   SHFT(__Y__) 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       ___________   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(nav_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   ____ESC____   ___TABL____   ___TABR____   XXXXXXXXXXX       XXXXXXXXXXX   ___BKSPC___   ____UP_____   ____TAB____   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   ___LOPT____   ___LGUI____   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   ___LEFT____   ___DOWN____   ___RIGHT___   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___LCTL____   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   ___ENTER___ 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   ___LSFT____       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(num_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(sym_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(som_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(fun_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_LAYER(sys_layer,
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   &bt BT_PRV    &bt BT_NXT    XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     &bootloader   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   &bt BT_CLR 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       &to DEF       XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+)
+
+/*                KEY POSITIONS
+
+  ╭────────────────────╮ ╭────────────────────╮
+  │  0   1   2   3   4 │ │  5   6   7   8   9 │
+  │ 10  11  12  13  14 │ │ 15  16  17  18  19 │ 
+  │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
+  ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
+          ╰────────────╯ ╰────────────╯
+*/
+
+ZMK_COMBO(to_sys, &to SYS, 11 12, SYM)
+
+
+/**
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     ___________   ___________   ___________   ___________   ___________       ___________   ___________   ___________   ___________   ___________ 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___________   ___________   ___________   ___________   ___________       ___________   ___________   ___________   ___________   ___________ 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     ___________   ___________   ___________   ___________   ___________       ___________   ___________   ___________   ___________   ___________ 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 ___________   ___________   ___________       ___________   ___________   ___________
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+
+// ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+     XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX 
+// ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┴─────────────┴─────────────╯
+                                 XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX       XXXXXXXXXXX   XXXXXXXXXXX   XXXXXXXXXXX
+//                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+*/

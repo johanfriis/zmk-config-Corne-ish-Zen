@@ -13,6 +13,8 @@
 #
 ---
 include:
+  - board: seeeduino_xiao
+    shield: hummingbird
   #- board: zaphod
-  - board: zen_left
-  - board: zen_right
+  # - board: zen_left
+  # - board: zen_right
