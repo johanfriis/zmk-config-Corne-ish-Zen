@@ -14,7 +14,7 @@
 ---
 include:
   - board: seeeduino_xiao
-    shield: hummingbird.taipo
+    shield: hummingbird
   #- board: zaphod
   # - board: zen_left
   # - board: zen_right
