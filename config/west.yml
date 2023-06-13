@@ -6,7 +6,7 @@ manifest:
       url-base: https://github.com/johanfriis
   projects:
     - name: zmk
-      remote: johanfriis
+      remote: zmkfirmware
       revision: main
       import: app/west.yml
   self:
