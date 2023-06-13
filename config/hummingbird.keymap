@@ -27,3 +27,53 @@ ZMK_LAYER(def_layer,
                                                ___________   ___________       ___________   ___________
 //                                           ╰─────────────┴─────────────╯   ╰─────────────┴─────────────╯
 )
+
+/**
+ * ----------------------------------------------
+ * COMBO LEFT LOWER ALPHAS
+ * ----------------------------------------------
+ */
+
+ZMK_COMBO(keylb, &kp B, LT3 LT2, DEF, 30)
+ZMK_COMBO(keyly, &kp Y, LT1 LT0, DEF, 30)
+ZMK_COMBO(keyll, &kp L, LB3 LB2, DEF, 30)
+ZMK_COMBO(keylh, &kp H, LB1 LB0, DEF, 30)
+ZMK_COMBO(keylu, &kp U, LB2 LB1, DEF, 30)
+ZMK_COMBO(keylp, &kp P, LT2 LT1, DEF, 30)
+ZMK_COMBO(keyld, &kp D, LB3 LB0, DEF, 30)
+ZMK_COMBO(keylg, &kp G, LT3 LT0, DEF, 30)
+ZMK_COMBO(keylz, &kp Z, LT3 LT1, DEF, 30)
+ZMK_COMBO(keylf, &kp F, LT2 LT0, DEF, 30)
+ZMK_COMBO(keylq, &kp Q, LB3 LB1, DEF, 30)
+ZMK_COMBO(keylc, &kp C, LB2 LB0, DEF, 30)
+ZMK_COMBO(keylx, &kp X, LT3 LB1, DEF, 30)
+ZMK_COMBO(keylk, &kp K, LB2 LT0, DEF, 30)
+ZMK_COMBO(keylv, &kp V, LT2 LB0, DEF, 30)
+ZMK_COMBO(keylj, &kp J, LB3 LT1, DEF, 30)
+ZMK_COMBO(keylm, &kp M, LT3 LB0, DEF, 30)
+ZMK_COMBO(keylw, &kp W, LB3 LT0, DEF, 30)
+
+/**
+ * ----------------------------------------------
+ * COMBO RIGHT LOWER ALPHAS
+ * ----------------------------------------------
+ */
+
+ZMK_COMBO(keyrb, &kp B, RT3 RT2, DEF, 30)
+ZMK_COMBO(keyry, &kp Y, RT1 RT0, DEF, 30)
+ZMK_COMBO(keyrl, &kp L, RB3 RB2, DEF, 30)
+ZMK_COMBO(keyrh, &kp H, RB1 RB0, DEF, 30)
+ZMK_COMBO(keyru, &kp U, RB2 RB1, DEF, 30)
+ZMK_COMBO(keyrp, &kp P, RT2 RT1, DEF, 30)
+ZMK_COMBO(keyrd, &kp D, RB3 RB0, DEF, 30)
+ZMK_COMBO(keyrg, &kp G, RT3 RT0, DEF, 30)
+ZMK_COMBO(keyrz, &kp Z, RT3 RT1, DEF, 30)
+ZMK_COMBO(keyrf, &kp F, RT2 RT0, DEF, 30)
+ZMK_COMBO(keyrq, &kp Q, RB3 RB1, DEF, 30)
+ZMK_COMBO(keyrc, &kp C, RB2 RB0, DEF, 30)
+ZMK_COMBO(keyrx, &kp X, RT3 RB1, DEF, 30)
+ZMK_COMBO(keyrk, &kp K, RB2 RT0, DEF, 30)
+ZMK_COMBO(keyrv, &kp V, RT2 RB0, DEF, 30)
+ZMK_COMBO(keyrj, &kp J, RB3 RT1, DEF, 30)
+ZMK_COMBO(keyrm, &kp M, RT3 RB0, DEF, 30)
+ZMK_COMBO(keyrw, &kp W, RB3 RT0, DEF, 30)
