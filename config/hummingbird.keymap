@@ -30,6 +30,28 @@ ZMK_LAYER(def_layer,
 
 /**
  * ----------------------------------------------
+ * COMBO LEFT UTILITY
+ * ----------------------------------------------
+ */
+
+ZMK_COMBO(keylTab, ____TAB____, LT0 LT1 LT2, DEF, 130)
+ZMK_COMBO(keylEnt, ___ENTER___, LB0 LB1 LB2, DEF, 130)
+ZMK_COMBO(keylBsp, ___BKSPC___, LB1 LB2 LB3, DEF, 130)
+ZMK_COMBO(keylEsc, ____ESC____, LT1 LT2 LT3, DEF, 130)
+
+/**
+ * ----------------------------------------------
+ * COMBO RIGHT UTILITY
+ * ----------------------------------------------
+ */
+
+ZMK_COMBO(keyrTab, ____TAB____, RT0 RT1 RT2, DEF, 130)
+ZMK_COMBO(keyrEnt, ___ENTER___, RB0 RB1 RB2, DEF, 130)
+ZMK_COMBO(keyrBsp, ___BKSPC___, RB1 RB2 RB3, DEF, 130)
+ZMK_COMBO(keyrEsc, ____ESC____, RT1 RT2 RT3, DEF, 130)
+
+/**
+ * ----------------------------------------------
  * COMBO LEFT LOWER ALPHAS
  * ----------------------------------------------
  */
@@ -77,25 +99,3 @@ ZMK_COMBO(keyrv, &kp V, RT2 RB0, DEF, 30)
 ZMK_COMBO(keyrj, &kp J, RB3 RT1, DEF, 30)
 ZMK_COMBO(keyrm, &kp M, RT3 RB0, DEF, 30)
 ZMK_COMBO(keyrw, &kp W, RB3 RT0, DEF, 30)
-
-/**
- * ----------------------------------------------
- * COMBO LEFT UTILITY
- * ----------------------------------------------
- */
-
-ZMK_COMBO(keylTab, ____TAB____, LT0 LT1 LT2, DEF, 130)
-ZMK_COMBO(keylEnt, ___ENTER___, LB0 LB1 LB2, DEF, 130)
-ZMK_COMBO(keylBsp, ___BKSPC___, LB1 LB2 LB3, DEF, 130)
-ZMK_COMBO(keylEsc, ____ESC____, LT1 LT2 LT3, DEF, 130)
-
-/**
- * ----------------------------------------------
- * COMBO RIGHT UTILITY
- * ----------------------------------------------
- */
-
-ZMK_COMBO(keyrTab, ____TAB____, RT0 RT1 RT2, DEF, 130)
-ZMK_COMBO(keyrEnt, ___ENTER___, RB0 RB1 RB2, DEF, 130)
-ZMK_COMBO(keyrBsp, ___BKSPC___, RB1 RB2 RB3, DEF, 130)
-ZMK_COMBO(keyrEsc, ____ESC____, RT1 RT2 RT3, DEF, 130)
